@@ -149,9 +149,9 @@ func (m *Manager) WaitForHeight(ctx context.Context, height int) error {
 	}
 }
 
-// Makes system call to current node container environment with fcod cli command to get current block height
+// Makes system call to current node container environment with socialvd cli command to get current block height
 func (m *Manager) nodeHeight(ctx context.Context) (int, error) {
-	exec, err := m.CreateExec([]string{"fcod", "q", "block"}, m.ContainerID())
+	exec, err := m.CreateExec([]string{"socialvd", "q", "block"}, m.ContainerID())
 	if err != nil {
 		return 0, fmt.Errorf("create exec error: %w", err)
 	}

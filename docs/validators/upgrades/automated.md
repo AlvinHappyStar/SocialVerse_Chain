@@ -26,27 +26,27 @@ Set up the Cosmovisor environment variables. We recommend setting these in your 
 
 ```bash
 echo "# Setup Cosmovisor" >> ~/.profile
-echo "export DAEMON_NAME=fcod" >> ~/.profile
-echo "export DAEMON_HOME=$HOME/.fcod" >> ~/.profile
+echo "export DAEMON_NAME=socialvd" >> ~/.profile
+echo "export DAEMON_HOME=$HOME/.socialvd" >> ~/.profile
 source ~/.profile
 ```
 
-After this, you must make the necessary folders for `cosmosvisor` in your `DAEMON_HOME` directory (`~/.fcod`) and copy over the current binary.
+After this, you must make the necessary folders for `cosmosvisor` in your `DAEMON_HOME` directory (`~/.socialvd`) and copy over the current binary.
 
 ```bash
-mkdir -p ~/.fcod/cosmovisor
-mkdir -p ~/.fcod/cosmovisor/genesis
-mkdir -p ~/.fcod/cosmovisor/genesis/bin
-mkdir -p ~/.fcod/cosmovisor/upgrades
+mkdir -p ~/.socialvd/cosmovisor
+mkdir -p ~/.socialvd/cosmovisor/genesis
+mkdir -p ~/.socialvd/cosmovisor/genesis/bin
+mkdir -p ~/.socialvd/cosmovisor/upgrades
 
-cp $GOPATH/bin/fcod ~/.fcod/cosmovisor/genesis/bin
+cp $GOPATH/bin/socialvd ~/.socialvd/cosmovisor/genesis/bin
 ```
 
-To check that you did this correctly, ensure your versions of `cosmovisor` and `fcod` are the same:
+To check that you did this correctly, ensure your versions of `cosmovisor` and `socialvd` are the same:
 
 ```bash
 cosmovisor run version
-fcod version
+socialvd version
 ```
 
 ### 2. Download the Evmos release
@@ -79,11 +79,11 @@ cosmovisor/
 ├── current/   # either genesis or upgrades/<name>
 ├── genesis
 │   └── bin
-│       └── fcod
+│       └── socialvd
 └── upgrades
     └── v3.0.0
         ├── bin
-        │   └── fcod
+        │   └── socialvd
         └── upgrade-info.json
 ```
 
@@ -112,7 +112,7 @@ cosmovisor run start
 You will need some way to keep the process always running. If you're on linux, you can do this by creating a service.
 
 ```bash
-sudo tee /etc/systemd/system/fcod.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/socialvd.service > /dev/null <<EOF
 [Unit]
 Description=Evmos Daemon
 After=network-online.target
@@ -124,8 +124,8 @@ Restart=always
 RestartSec=3
 LimitNOFILE=infinity
 
-Environment="DAEMON_HOME=$HOME/.fcod"
-Environment="DAEMON_NAME=fcod"
+Environment="DAEMON_HOME=$HOME/.socialvd"
+Environment="DAEMON_NAME=socialvd"
 Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
 Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
 
@@ -138,12 +138,12 @@ Then update and start the node
 
 ```bash
 sudo -S systemctl daemon-reload
-sudo -S systemctl enable fcod
-sudo -S systemctl start fcod
+sudo -S systemctl enable socialvd
+sudo -S systemctl start socialvd
 ```
 
 You can check the status with:
 
 ```bash
-systemctl status fcod
+systemctl status socialvd
 ```

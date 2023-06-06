@@ -10,9 +10,9 @@ faucet:
   name: bob 
   coins: ["10uvFCO"]
 build:
-  binary: "fcod"
+  binary: "socialvd"
 init:
-  home: "$HOME/.fcod"
+  home: "$HOME/.socialvd"
   app:
     evm-rpc:
       address: "0.0.0.0:8545"     # change the JSON-RPC address and port

@@ -8,8 +8,8 @@
 ## USAGE RUNDOWN
 # Not for use on live nodes
 # For use when testing.
-# Assumes that ~/.fcod doesn't exist
-# can be modified to suit your purposes if ~/.fcod does already exist
+# Assumes that ~/.socialvd doesn't exist
+# can be modified to suit your purposes if ~/.socialvd does already exist
 
 
 set -uxe
@@ -31,11 +31,11 @@ go install ./...
 # go install -ldflags '-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=boltdb' -tags boltdb ./...
 
 # Initialize chain.
-fcod init test --chain-id compose_1-1
+socialvd init test --chain-id compose_1-1
 
 # Get Genesis
 wget https://archive.evmos.org/mainnet/genesis.json
-mv genesis.json ~/.fcod/config/
+mv genesis.json ~/.socialvd/config/
 
 
 # Get "trust_hash" and "trust_height".
@@ -59,4 +59,4 @@ export composed_STATESYNC_TRUST_HASH=$TRUST_HASH
 export composed_P2P_SEEDS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/evmos/chain.json | jq -r '[foreach .peers.seeds[] as $item (""; "\($item.id)@\($item.address)")] | join(",")')
 
 # Start chain.
-fcod start --x-crisis-skip-assert-invariants 
+socialvd start --x-crisis-skip-assert-invariants 

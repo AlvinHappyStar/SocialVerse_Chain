@@ -9,8 +9,8 @@ REST.
 
 ## CLI
 
-Find below a list of `fcod` commands added with the `x/inflation` module. You
-can obtain the full list by using the `fcod -h` command.
+Find below a list of `socialvd` commands added with the `x/inflation` module. You
+can obtain the full list by using the `socialvd -h` command.
 
 ### Queries
 
@@ -21,7 +21,7 @@ The `query` commands allow users to query `inflation` state.
 Allows users to query the current inflation period.
 
 ```go
-fcod query inflation period [flags]
+socialvd query inflation period [flags]
 ```
 
 **`epoch-mint-provision`**
@@ -29,7 +29,7 @@ fcod query inflation period [flags]
 Allows users to query the current inflation epoch provisions value.
 
 ```go
-fcod query inflation epoch-mint-provision [flags]
+socialvd query inflation epoch-mint-provision [flags]
 ```
 
 **`skipped-epochs`**
@@ -37,7 +37,7 @@ fcod query inflation epoch-mint-provision [flags]
 Allows users to query the current number of skipped epochs.
 
 ```go
-fcod query inflation skipped-epochs [flags]
+socialvd query inflation skipped-epochs [flags]
 ```
 
 **`total-supply`**
@@ -45,7 +45,7 @@ fcod query inflation skipped-epochs [flags]
 Allows users to query the total supply of tokens in circulation.
 
 ```go
-fcod query inflation total-supply [flags]
+socialvd query inflation total-supply [flags]
 ```
 
 **`inflation-rate`**
@@ -53,7 +53,7 @@ fcod query inflation total-supply [flags]
 Allows users to query the inflation rate of the current period.
 
 ```go
-fcod query inflation inflation-rate [flags]
+socialvd query inflation inflation-rate [flags]
 ```
 
 **`params`**
@@ -61,7 +61,7 @@ fcod query inflation inflation-rate [flags]
 Allows users to query the current inflation parameters.
 
 ```go
-fcod query inflation params [flags]
+socialvd query inflation params [flags]
 ```
 
 ### Proposals
@@ -74,7 +74,7 @@ using the governance module CLI:
 Allows users to submit a `ParameterChangeProposal`.
 
 ```bash
-fcod tx gov submit-proposal param-change [proposal-file] [flags]
+socialvd tx gov submit-proposal param-change [proposal-file] [flags]
 ```
 
 ## gRPC

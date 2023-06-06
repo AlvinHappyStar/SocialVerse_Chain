@@ -23,7 +23,7 @@ You need to set the **genesis file** and **seeds**. If you need more information
 **IMPORTANT:** If you join mainnet as a validator make sure you follow all the [security](./security/security.md) recommendations!
 :::
 
-## Install `fcod`
+## Install `socialvd`
 
 Follow the [installation](./quickstart/installation.md) document to install the {{ $themeConfig.project.name }} binary `{{ $themeConfig.project.binary }}`.
 
@@ -40,7 +40,7 @@ See the Official [Chain IDs](./../users/technical_concepts/chain_id.md#official-
 :::
 
 ```bash
-fcod config chain-id evmos_9001-2
+socialvd config chain-id evmos_9001-2
 ```
 
 ## Initialize Node
@@ -48,38 +48,38 @@ fcod config chain-id evmos_9001-2
 We need to initialize the node to create all the necessary validator and node configuration files:
 
 ```bash
-fcod init <your_custom_moniker> --chain-id evmos_9001-2
+socialvd init <your_custom_moniker> --chain-id evmos_9001-2
 ```
 
 ::: danger
 Monikers can contain only ASCII characters. Using Unicode characters will render your node unreachable.
 :::
 
-By default, the `init` command creates your `~/.fcod` (i.e `$HOME`) directory with subfolders `config/` and `data/`.
+By default, the `init` command creates your `~/.socialvd` (i.e `$HOME`) directory with subfolders `config/` and `data/`.
 In the `config` directory, the most important files for configuration are `app.toml` and `config.toml`.
 
 ## Genesis & Seeds
 
 ### Copy the Genesis File
 
-Download the `genesis.json` file from the [`archive`](https://archive.evmos.org/mainnet/genesis.json) and copy it over to the `config` directory: `~/.fcod/config/genesis.json`. This is a genesis file with the chain-id and genesis accounts balances.
+Download the `genesis.json` file from the [`archive`](https://archive.evmos.org/mainnet/genesis.json) and copy it over to the `config` directory: `~/.socialvd/config/genesis.json`. This is a genesis file with the chain-id and genesis accounts balances.
 
 ```bash
 wget https://archive.evmos.org/mainnet/genesis.json
-mv genesis.json ~/.fcod/config/
+mv genesis.json ~/.socialvd/config/
 ```
 
 Then verify the correctness of the genesis configuration file:
 
 ```bash
-fcod validate-genesis
+socialvd validate-genesis
 ```
 
 ### Add Seed Nodes
 
-Your node needs to know how to find [peers](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#peers). You'll need to add healthy [seed nodes](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#seed) to `$HOME/.fcod/config/config.toml`. The [`mainnet`](https://github.com/evmos/mainnet) repo contains links to some seed nodes.
+Your node needs to know how to find [peers](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#peers). You'll need to add healthy [seed nodes](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#seed) to `$HOME/.socialvd/config/config.toml`. The [`mainnet`](https://github.com/evmos/mainnet) repo contains links to some seed nodes.
 
-Edit the file located in `~/.fcod/config/config.toml` and the `seeds` to the following:
+Edit the file located in `~/.socialvd/config/config.toml` and the `seeds` to the following:
 
 ```toml
 #######################################################
@@ -97,7 +97,7 @@ You can use the following code to get seeds from the repo and add it to your con
 
 ```bash
 SEEDS=`curl -sL https://raw.githubusercontent.com/tharsis/mainnet/main/evmos_9001-2/seeds.txt | awk '{print $1}' | paste -s -d, -`
-sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.fcod/config/config.toml
+sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.socialvd/config/config.toml
 ```
 
 :::tip
@@ -106,7 +106,7 @@ For more information on seeds and peers, you can the Tendermint [P2P documentati
 
 ### Add Persistent Peers
 
-We can set the [`persistent_peers`](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#persistent-peer) field in `~/.fcod/config/config.toml` to specify peers that your node will maintain persistent connections with. You can retrieve them from the list of
+We can set the [`persistent_peers`](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#persistent-peer) field in `~/.socialvd/config/config.toml` to specify peers that your node will maintain persistent connections with. You can retrieve them from the list of
 available peers on the [`mainnet`](https://github.com/evmos/mainnet) repo.
 
 A list of available persistent peers is also available in the `#find-peers` channel in the [Evmos Discord](https://discord.gg/evmos). You can get a random 10 entries from the `peers.txt` file in the `PEERS` variable by running the following command:
@@ -118,7 +118,7 @@ PEERS=`curl -sL https://raw.githubusercontent.com/tharsis/mainnet/main/evmos_900
 Use `sed` to include them into the configuration. You can also add them manually:
 
 ```bash
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.fcod/config/config.toml
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.socialvd/config/config.toml
 ```
 
 ## Run a Mainnet Validator
@@ -128,9 +128,9 @@ For more details on how to run your validator, follow the validator [these](./se
 :::
 
 ```bash
-fcod tx staking create-validator \
+socialvd tx staking create-validator \
   --amount=1000000000000pose \
-  --pubkey=$(fcod tendermint show-validator) \
+  --pubkey=$(socialvd tendermint show-validator) \
   --moniker="EvmosWhale" \
   --chain-id=<chain_id> \
   --commission-rate="0.05" \
@@ -153,7 +153,7 @@ Ref: [Security Advisory: Insecurely configured geth can make funds remotely acce
 The final step is to [start the nodes](./quickstart/run_node.md#start-node). Once enough voting power (+2/3) from the genesis validators is up-and-running, the node will start producing blocks.
 
 ```bash
-fcod start
+socialvd start
 ```
 
 ## Share your Peer
@@ -164,7 +164,7 @@ You can share your peer to posting it in the `#find-peers` channel in the [Evmos
 To get your Node ID use
 
 ```bash
-fcod tendermint show-node-id
+socialvd tendermint show-node-id
 ```
 
 :::

@@ -12,7 +12,7 @@ Learn how to manually upgrade your node. {synopsis}
 
 ## 1. Upgrade the Evmos version
 
-Before upgrading the Evmos version. Stop your instance of `fcod` using `Ctrl/Cmd+C`.
+Before upgrading the Evmos version. Stop your instance of `socialvd` using `Ctrl/Cmd+C`.
 
 Next, upgrade the software to the desired release version. Check the Evmos [releases page](https://github.com/evmos/evmos/releases) for details on each release.
 
@@ -33,10 +33,10 @@ If you have issues at this step, please check that you have the latest stable ve
 Verify that you've successfully installed Evmos on your system by using the `version` command:
 
 ```bash
-$ fcod version --long
+$ socialvd version --long
 
 name: evmos
-server_name: fcod
+server_name: socialvd
 version: 3.0.0
 commit: fe9df43332800a74a163c014c69e62765d8206e3
 build_tags: netgo,ledger
@@ -45,7 +45,7 @@ go: go version go1.19 darwin/amd64
 ```
 
 ::: tip
-If the software version does not match, then please check your `$PATH` to ensure the correct `fcod` is running.
+If the software version does not match, then please check your `$PATH` to ensure the correct `socialvd` is running.
 :::
 
 ## 2. Replace Genesis file
@@ -60,7 +60,7 @@ You can find the latest `genesis.json` file for mainnet or testnet in the follow
 Save the new genesis as `new_genesis.json`. Then, replace the old `genesis.json` located in your `config/` directory with `new_genesis.json`:
 
 ```bash
-cd $HOME/.fcod/config
+cd $HOME/.socialvd/config
 cp -f genesis.json new_genesis.json
 mv new_genesis.json genesis.json
 ```
@@ -69,7 +69,7 @@ mv new_genesis.json genesis.json
 We recommend using `sha256sum` to check the hash of the downloaded genesis against the expected genesis.
 
 ```bash
-cd ~/.fcod/config
+cd ~/.socialvd/config
 echo "<expected_hash>  genesis.json" | sha256sum -c
 ```
 
@@ -84,8 +84,8 @@ Check [here](./upgrades.md) if the version you are upgrading require a data rese
 Remove the outdated files and reset the data:
 
 ```bash
-rm $HOME/.fcod/config/addrbook.json
-fcod tendermint unsafe-reset-all --home $HOME/.fcod
+rm $HOME/.socialvd/config/addrbook.json
+socialvd tendermint unsafe-reset-all --home $HOME/.socialvd
 ```
 
 Your node is now in a pristine state while keeping the original `priv_validator.json` and `config.toml`. If you had any sentry nodes or full nodes setup before,
@@ -103,5 +103,5 @@ Make sure that every node has a unique `priv_validator.json`. **DO NOT** copy th
 To restart your node once the new genesis has been updated, use the `start` command:
 
 ```bash
-fcod start
+socialvd start
 ```

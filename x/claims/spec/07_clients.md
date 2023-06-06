@@ -8,7 +8,7 @@ A user can query the `x/claims` module using the CLI, gRPC or REST.
 
 ## CLI
 
-Find below a list of `fcod` commands added with the `x/claims` module. You can obtain the full list by using the `fcod -h` command.
+Find below a list of `socialvd` commands added with the `x/claims` module. You can obtain the full list by using the `socialvd -h` command.
 
 ### Queries
 
@@ -19,7 +19,7 @@ The `query` commands allow users to query `claims` state.
 Allows users to query total amount of unclaimed tokens from the airdrop.
 
 ```bash
-fcod query claims total-unclaimed [flags]
+socialvd query claims total-unclaimed [flags]
 ```
 
 **`records`**
@@ -27,7 +27,7 @@ fcod query claims total-unclaimed [flags]
 Allows users to query all the claims records available.
 
 ```bash
-fcod query claims records [flags]
+socialvd query claims records [flags]
 ```
 
 **`record`**
@@ -35,7 +35,7 @@ fcod query claims records [flags]
 Allows users to query a claims record for a given user.
 
 ```bash
-fcod query claims record ADDRESS [flags]
+socialvd query claims record ADDRESS [flags]
 ```
 
 **`params`**
@@ -43,7 +43,7 @@ fcod query claims record ADDRESS [flags]
 Allows users to query claims params.
 
 ```bash
-fcod query claims params [flags]
+socialvd query claims params [flags]
 ```
 
 ## gRPC

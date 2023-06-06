@@ -68,55 +68,55 @@ make localnet-stop
 ### Configuration
 
 The `make localnet-start` creates files for a 4-node testnet in `./build` by
-calling the `fcod testnet` command. This outputs a handful of files in the
+calling the `socialvd testnet` command. This outputs a handful of files in the
 `./build` directory:
 
 ```bash
 tree -L 3 build/
 
 build/
-├── fcod
-├── fcod
+├── socialvd
+├── socialvd
 ├── gentxs
 │   ├── node0.json
 │   ├── node1.json
 │   ├── node2.json
 │   └── node3.json
 ├── node0
-│   ├── fcod
+│   ├── socialvd
 │   │   ├── key_seed.json
 │   │   └── keyring-test-cosmos
-│   └── fcod
+│   └── socialvd
 │       ├── config
 │       ├── data
-│       └── fcod.log
+│       └── socialvd.log
 ├── node1
-│   ├── fcod
+│   ├── socialvd
 │   │   ├── key_seed.json
 │   │   └── keyring-test-cosmos
-│   └── fcod
+│   └── socialvd
 │       ├── config
 │       ├── data
-│       └── fcod.log
+│       └── socialvd.log
 ├── node2
-│   ├── fcod
+│   ├── socialvd
 │   │   ├── key_seed.json
 │   │   └── keyring-test-cosmos
-│   └── fcod
+│   └── socialvd
 │       ├── config
 │       ├── data
-│       └── fcod.log
+│       └── socialvd.log
 └── node3
-    ├── fcod
+    ├── socialvd
     │   ├── key_seed.json
     │   └── keyring-test-cosmos
-    └── fcod
+    └── socialvd
         ├── config
         ├── data
-        └── fcod.log
+        └── socialvd.log
 ```
 
-Each `./build/nodeN` directory is mounted to the `/fcod` directory in each container.
+Each `./build/nodeN` directory is mounted to the `/socialvd` directory in each container.
 
 ### Logging
 
@@ -124,10 +124,10 @@ In order to see the logs of a particular node you can use the following command:
 
 ```bash
 # node 0: daemon logs
-docker exec composednode0 tail fcod.log
+docker exec composednode0 tail socialvd.log
 
 # node 0: REST & RPC logs
-docker exec composednode0 tail fcod.log
+docker exec composednode0 tail socialvd.log
 ```
 
 The logs for the daemon will look like:
@@ -192,18 +192,18 @@ Additional instructions on how to interact with the WebSocket can be found on th
 
 ### Keys & Accounts
 
-To interact with `fcod` and start querying state or creating txs, you use the
-`fcod` directory of any given node as your `home`, for example:
+To interact with `socialvd` and start querying state or creating txs, you use the
+`socialvd` directory of any given node as your `home`, for example:
 
 ```bash
-fcod keys list --home ./build/node0/fcod
+socialvd keys list --home ./build/node0/socialvd
 ```
 
 Now that accounts exists, you may create new accounts and send those accounts
 funds!
 
 ::: tip
-**Note**: Each node's seed is located at `./build/nodeN/fcod/key_seed.json` and can be restored to the CLI using the `fcod keys add --restore` command
+**Note**: Each node's seed is located at `./build/nodeN/socialvd/key_seed.json` and can be restored to the CLI using the `socialvd keys add --restore` command
 :::
 
 ### Special Binaries

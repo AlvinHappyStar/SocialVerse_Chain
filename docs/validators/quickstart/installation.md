@@ -22,7 +22,7 @@ go version
 ```
 
 :::tip
-If the `fcod: command not found` error message is returned, confirm that your [`GOPATH`](https://golang.org/doc/gopath_code#GOPATH) is correctly configured by running the following command:
+If the `socialvd: command not found` error message is returned, confirm that your [`GOPATH`](https://golang.org/doc/gopath_code#GOPATH) is correctly configured by running the following command:
 
 ```bash
 export PATH=$PATH:$(go env GOPATH)/bin
@@ -53,7 +53,7 @@ make install
 After installation is done, check that the `{{ $themeConfig.project.binary }}` binaries have been successfully installed:
 
 ```bash
-fcod version
+socialvd version
 ```
 
 ### Docker
@@ -64,14 +64,14 @@ You can build {{ $themeConfig.project.name }} using Docker by running:
 make build-docker
 ```
 
-The command above will create a docker container: `tharsishq/evmos:latest`. Now you can run `fcod` in the container.
+The command above will create a docker container: `tharsishq/evmos:latest`. Now you can run `socialvd` in the container.
 
 ```bash
-docker run -it -p 26657:26657 -p 26656:26656 -v ~/.fcod/:/root/.fcod tharsishq/evmos:latest fcod version
+docker run -it -p 26657:26657 -p 26656:26656 -v ~/.socialvd/:/root/.socialvd tharsishq/evmos:latest socialvd version
 
 # To initialize
-# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.fcod/:/root/.fcod tharsishq/evmos:latest fcod init test-chain --chain-id test_9000-2
+# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.socialvd/:/root/.socialvd tharsishq/evmos:latest socialvd init test-chain --chain-id test_9000-2
 
 # To run
-# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.fcod/:/root/.fcod tharsishq/evmos:latest fcod start
+# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.socialvd/:/root/.socialvd tharsishq/evmos:latest socialvd start
 ```

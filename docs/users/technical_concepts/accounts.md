@@ -53,13 +53,13 @@ Cosmos `sdk.AccAddress`.
 
 ### Address conversion
 
-The `fcod debug addr <address>` can be used to convert an address between hex and bech32 formats. For example:
+The `socialvd debug addr <address>` can be used to convert an address between hex and bech32 formats. For example:
 
 <CodeGroup>
 <CodeGroupItem title="Bech32">
 
 ```bash
- $ fcod debug addr evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw
+ $ socialvd debug addr evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw
   Address: [20 87 74 109 255 45 223 158 7 130 139 67 69 211 4 9 25 175 86 82]
   Address (hex): 14574A6DFF2DDF9E07828B4345D3040919AF5652
   Bech32 Acc: evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw
@@ -70,7 +70,7 @@ The `fcod debug addr <address>` can be used to convert an address between hex an
 <CodeGroupItem title="Hex">
 
 ```bash
- $ fcod debug addr 14574A6DFF2DDF9E07828B4345D3040919AF5652
+ $ socialvd debug addr 14574A6DFF2DDF9E07828B4345D3040919AF5652
   Address: [20 87 74 109 255 45 223 158 7 130 139 67 69 211 4 9 25 175 86 82]
   Address (hex): 14574A6DFF2DDF9E07828B4345D3040919AF5652
   Bech32 Acc: evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw
@@ -83,17 +83,17 @@ The `fcod debug addr <address>` can be used to convert an address between hex an
 ### Key output
 
 ::: tip
-The Cosmos SDK Keyring output (i.e `fcod keys`) only supports addresses and public keys in Bech32 format.
+The Cosmos SDK Keyring output (i.e `socialvd keys`) only supports addresses and public keys in Bech32 format.
 :::
 
-We can use the `keys show` command of `fcod` with the flag `--bech <type> (acc|val|cons)` to
+We can use the `keys show` command of `socialvd` with the flag `--bech <type> (acc|val|cons)` to
 obtain the addresses and keys as mentioned above,
 
 <CodeGroup>
 <CodeGroupItem title="Accounts">
 
 ```bash
- $ fcod keys show dev0 --bech acc
+ $ socialvd keys show dev0 --bech acc
 - name: dev0
   type: local
   address: evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw
@@ -105,7 +105,7 @@ obtain the addresses and keys as mentioned above,
 <CodeGroupItem title="Validator">
 
 ```bash
- $ fcod keys show dev0 --bech val
+ $ socialvd keys show dev0 --bech val
 - name: dev0
   type: local
   address: evmosvaloper1z3t55m0l9h0eupuz3dp5t5cypyv674jjn4d6nn
@@ -117,7 +117,7 @@ obtain the addresses and keys as mentioned above,
 <CodeGroupItem title="Consensus">
 
 ```bash
- $ fcod keys show dev0 --bech cons
+ $ socialvd keys show dev0 --bech cons
 - name: dev0
   type: local
   address: evmosvalcons1rllqa5d97n6zyjhy6cnscc7zu30zjn3f7wyj2n
@@ -136,7 +136,7 @@ You can query an account address using the CLI, gRPC or
 
 ```bash
 # NOTE: the --output (-o) flag will define the output format in JSON or YAML (text)
-fcod q auth account $(fcod keys show dev0 -a) -o text
+socialvd q auth account $(socialvd keys show dev0 -a) -o text
 
 '@type': /ethermint.types.v1.EthAccount
 base_account:

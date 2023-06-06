@@ -16,7 +16,7 @@ To sign with a multisig account, the transaction must be signed individually by 
 ## Generate a Multisig key
 
 ```bash
-fcod keys add --multisig=name1,name2,name3[...] --multisig-threshold=K new_key_name
+socialvd keys add --multisig=name1,name2,name3[...] --multisig-threshold=K new_key_name
 ```
 
 `K` is the minimum number of private keys that must have signed the transactions that carry the public key's address as signer.
@@ -26,14 +26,14 @@ The `--multisig` flag must contain the name of public keys that will be combined
 Unless the flag `--nosort` is set, the order in which the keys are supplied on the command line does not matter, i.e. the following commands generate two identical keys:
 
 ```bash
-fcod keys add --multisig=p1,p2,p3 --multisig-threshold=2 multisig_address
-fcod keys add --multisig=p2,p3,p1 --multisig-threshold=2 multisig_address
+socialvd keys add --multisig=p1,p2,p3 --multisig-threshold=2 multisig_address
+socialvd keys add --multisig=p2,p3,p1 --multisig-threshold=2 multisig_address
 ```
 
 Multisig addresses can also be generated on-the-fly and printed through the which command:
 
 ```bash
-fcod keys show --multisig-threshold=K name1 name2 name3 [...]
+socialvd keys show --multisig-threshold=K name1 name2 name3 [...]
 ```
 
 ## Signing a transaction
@@ -45,7 +45,7 @@ Let's assume that you have `test1` and `test2` want to make a multisig account w
 First import the public keys of `test3` into your keyring.
 
 ```sh
-fcod keys add \
+socialvd keys add \
     test3 \
     --pubkey=evmospub1addwnpepqgcxazmq6wgt2j4rdfumsfwla0zfk8e5sws3p3zg5dkm9007hmfysxas0u2
 ```
@@ -53,7 +53,7 @@ fcod keys add \
 Generate the multisig key with 2/3 threshold.
 
 ```sh
-fcod keys add \
+socialvd keys add \
     multi \
     --multisig=test1,test2,test3 \
     --multisig-threshold=2
@@ -62,7 +62,7 @@ fcod keys add \
 You can see its address and details:
 
 ```sh
-fcod keys show multi
+socialvd keys show multi
 
 - name: multi
   type: multi
@@ -76,7 +76,7 @@ fcod keys show multi
 Let's add 10 EVMOS to the multisig wallet:
 
 ```bash
-fcod tx bank send \
+socialvd tx bank send \
     test1 \
     evmos1e0fx0q9meawrcq7fmma9x60gk35lpr4xk3884m \
     10000000000000000000pose \
@@ -91,7 +91,7 @@ fcod tx bank send \
 We want to send 5 EVMOS from our multisig account to `evmos1rgjxswhuxhcrhmyxlval0qa70vxwvqn2e0srft`.
 
 ```bash
-fcod tx bank send \
+socialvd tx bank send \
     evmos1rgjxswhuxhcrhmyxlval0qa70vxwvqn2e0srft \
     evmos157g6rn6t6k5rl0dl57zha2wx72t633axqyvvwq \
     5000000000000000000pose \
@@ -147,7 +147,7 @@ The file `unsignedTx.json` contains the unsigned transaction encoded in JSON.
 Sign with `test1` and `test2` and create individual signatures.
 
 ```sh
-fcod tx sign \
+socialvd tx sign \
     unsignedTx.json \
     --multisig=evmos1e0fx0q9meawrcq7fmma9x60gk35lpr4xk3884m \
     --from=test1 \
@@ -156,7 +156,7 @@ fcod tx sign \
 ```
 
 ```sh
-fcod tx sign \
+socialvd tx sign \
     unsignedTx.json \
     --multisig=evmos1e0fx0q9meawrcq7fmma9x60gk35lpr4xk3884m \
     --from=test2 \
@@ -169,7 +169,7 @@ fcod tx sign \
 Combine signatures to sign transaction.
 
 ```sh
-fcod tx multisign \
+socialvd tx multisign \
     unsignedTx.json \
     multi \
     test1sig.json test2sig.json \
@@ -265,7 +265,7 @@ The TX is now signed:
 ### Step 5: Broadcast transaction
 
 ```sh
-fcod tx broadcast signedTx.json \
+socialvd tx broadcast signedTx.json \
     --chain-id=evmos_9000-4 \
     --broadcast-mode=block
 ```

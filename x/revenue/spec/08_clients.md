@@ -6,10 +6,10 @@ order: 8
 
 ## CLI
 
-Find below a list of  `fcod` commands added with the  `x/revenue` module. You can obtain the full list by using the `fcod -h` command. A CLI command can look like this:
+Find below a list of  `socialvd` commands added with the  `x/revenue` module. You can obtain the full list by using the `socialvd -h` command. A CLI command can look like this:
 
 ```bash
-fcod query revenue params
+socialvd query revenue params
 ```
 
 ### Queries

@@ -27,10 +27,10 @@ In this example, the default ports for Evmos will be used, and the ports of the 
 
 ## Evmos Daemon Settings
 
-First, set `grpc server` on port `9090` in the `app.toml` file from the `$HOME/.fcod/config` directory:
+First, set `grpc server` on port `9090` in the `app.toml` file from the `$HOME/.socialvd/config` directory:
 
 ```bash
-vim $HOME/.fcod/config/app.toml
+vim $HOME/.socialvd/config/app.toml
 ```
 
 ```bash
@@ -43,10 +43,10 @@ enable = true
 address = "0.0.0.0:9090"
 ```
 
-Then, set the `pprof_laddr` to port `6060`, `rpc laddr` to port `26657`, and `prp laddr` to `26656` in the `config.toml` file from the `$HOME/.fcod/config` directory:
+Then, set the `pprof_laddr` to port `6060`, `rpc laddr` to port `26657`, and `prp laddr` to `26656` in the `config.toml` file from the `$HOME/.socialvd/config` directory:
 
 ```bash
-vim $HOME/.fcod/config/config.toml
+vim $HOME/.socialvd/config/config.toml
 ```
 
 ```bash

@@ -20,7 +20,7 @@ KEY="dev0"
 CHAINID="compose_1-1"
 MONIKER="mymoniker"
 
-## default port prefixes for fcod
+## default port prefixes for socialvd
 NODE_P2P_PORT="2660"
 NODE_PORT="2663"
 NODE_RPC_PORT="2666"
@@ -67,14 +67,14 @@ make build
 arr=()
 
 init_func() {
-    "$PWD"/build/fcod keys add $KEY"$i" --keyring-backend test --home "$DATA_DIR$i" --no-backup --algo "eth_secp256k1"
-    "$PWD"/build/fcod init $MONIKER --chain-id $CHAINID --home "$DATA_DIR$i"
-    "$PWD"/build/fcod add-genesis-account \
-    "$("$PWD"/build/fcod keys show "$KEY$i" --keyring-backend test -a --home "$DATA_DIR$i")" 1000000000000000000pose,1000000000000000000stake \
+    "$PWD"/build/socialvd keys add $KEY"$i" --keyring-backend test --home "$DATA_DIR$i" --no-backup --algo "eth_secp256k1"
+    "$PWD"/build/socialvd init $MONIKER --chain-id $CHAINID --home "$DATA_DIR$i"
+    "$PWD"/build/socialvd add-genesis-account \
+    "$("$PWD"/build/socialvd keys show "$KEY$i" --keyring-backend test -a --home "$DATA_DIR$i")" 1000000000000000000pose,1000000000000000000stake \
     --keyring-backend test --home "$DATA_DIR$i"
-    "$PWD"/build/fcod gentx "$KEY$i" 1000000000000000000stake --chain-id $CHAINID --keyring-backend test --home "$DATA_DIR$i"
-    "$PWD"/build/fcod collect-gentxs --home "$DATA_DIR$i"
-    "$PWD"/build/fcod validate-genesis --home "$DATA_DIR$i"
+    "$PWD"/build/socialvd gentx "$KEY$i" 1000000000000000000stake --chain-id $CHAINID --keyring-backend test --home "$DATA_DIR$i"
+    "$PWD"/build/socialvd collect-gentxs --home "$DATA_DIR$i"
+    "$PWD"/build/socialvd validate-genesis --home "$DATA_DIR$i"
 
     if [[ $MODE == "pending" ]]; then
       ls $DATA_DIR$i
@@ -104,7 +104,7 @@ init_func() {
 
 start_func() {
     echo "starting evmos node $i in background ..."
-    "$PWD"/build/fcod start --pruning=nothing --rpc.unsafe \
+    "$PWD"/build/socialvd start --pruning=nothing --rpc.unsafe \
     --p2p.laddr tcp://$IP_ADDR:$NODE_P2P_PORT"$i" --address tcp://$IP_ADDR:$NODE_PORT"$i" --rpc.laddr tcp://$IP_ADDR:$NODE_RPC_PORT"$i" \
     --json-rpc.address=$IP_ADDR:$RPC_PORT"$i" \
     --keyring-backend test --home "$DATA_DIR$i" \

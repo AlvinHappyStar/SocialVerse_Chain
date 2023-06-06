@@ -8,7 +8,7 @@ A user can query the `x/recovery` module using the CLI, gRPC or REST.
 
 ## CLI
 
-Find below a list of `fcod` commands added with the `x/recovery` module. You can obtain the full list by using the `fcod` -h command.
+Find below a list of `socialvd` commands added with the `x/recovery` module. You can obtain the full list by using the `socialvd` -h command.
 
 ### Queries
 
@@ -18,7 +18,7 @@ The query commands allow users to query Recovery state.
 Allows users to query the module parameters.
 
 ```bash
-fcod query recovery params [flags]
+socialvd query recovery params [flags]
 ```
 
 ## gRPC
